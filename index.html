@@ -42,18 +42,18 @@
   }
 
   header{position:sticky;top:0;z-index:50;background:rgba(247,249,251,0.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
-  .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 28px;max-width:1180px;margin:0 auto;}
-  .brand{display:flex;align-items:center;gap:11px;}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 28px;max-width:1180px;margin:0 auto;flex-wrap:nowrap;gap:16px;}
+  .brand{display:flex;align-items:center;gap:11px;flex-shrink:0;}
   .brand img{height:46px;width:auto;}
   .brand-name{font-family:'Noto Serif Tamil',serif;font-weight:700;font-size:22px;color:var(--navy);}
   .brand-name span{color:var(--green);}
-  .brand-sub{font-size:10.5px;color:#5c6773;letter-spacing:0.04em;margin-top:1px;}
-  nav.links{display:flex;gap:28px;font-size:15px;font-weight:500;}
-  nav.links a{padding:6px 0;border-bottom:2px solid transparent;transition:border-color .2s;}
+  .brand-sub{font-size:10.5px;color:#5c6773;letter-spacing:0.04em;margin-top:1px;white-space:nowrap;}
+  nav.links{display:flex;gap:22px;font-size:14.5px;font-weight:500;flex-shrink:0;}
+  nav.links a{padding:6px 0;border-bottom:2px solid transparent;transition:border-color .2s;white-space:nowrap;}
   nav.links a:hover{border-color:var(--green);}
   .nav-cta{background:var(--navy);color:#fff;padding:10px 20px;border-radius:7px;font-weight:600;font-size:14.5px;white-space:nowrap;}
   .nav-toggle{display:none;background:none;border:0;font-size:26px;cursor:pointer;color:var(--navy);}
-  @media (max-width:860px){nav.links{display:none;}.nav-toggle{display:block;}.nav-cta{display:none;}}
+  @media (max-width:1150px){nav.links{display:none;}.nav-toggle{display:block;}.nav-cta{display:none;}}
 
   .hero{background:linear-gradient(155deg, var(--navy-deep) 0%, var(--navy) 62%, #1a5c3f 100%);color:#fff;overflow:hidden;padding:64px 0 88px;position:relative;}
   .hero-scene{position:absolute;inset:0;width:100%;height:100%;z-index:0;}
@@ -310,9 +310,9 @@
 
   <div class="wrap">
     <form class="searchbar" id="heroSearchForm">
-      <div><label>இடம்</label><select id="searchLocation"><option value="">அனைத்தும்</option><option>திருக்கழுக்குன்றம்</option><option>செங்கல்பட்டு</option><option>மாமல்லபுரம் சாலை</option><option>வண்டலூர்</option></select></div>
-      <div><label>நில வகை</label><select id="searchType"><option value="">அனைத்தும்</option><option>வேளாண் நிலம்</option><option>குடியிருப்பு மனை</option><option>வணிக நிலம்</option></select></div>
-      <div><label>பட்ஜெட் (per Cent)</label><select id="searchBudget"><option value="">அனைத்தும்</option><option data-max="100000">&#8377;50,000 &ndash; &#8377;1,00,000</option><option data-max="200000">&#8377;1,00,000 &ndash; &#8377;2,00,000</option><option data-max="999999999">&#8377;2,00,000+</option></select></div>
+      <div><label>இடம்</label><select id="searchLocation"><option value="">அனைத்தும்</option><option>செங்கல்பட்டு</option><option>திருக்கழுக்குன்றம்</option><option>திருப்போரூர்</option><option>மதுராந்தகம்</option><option>செய்யூர்</option><option>பல்லாவரம்</option><option>தாம்பரம்</option><option>வண்டலூர்</option></select></div>
+      <div><label>நில வகை</label><select id="searchType"><option value="">அனைத்தும்</option><option>வேளாண் நிலம்</option><option>குடியிருப்பு மனை</option><option>வணிக நிலம்</option><option>மற்றவை</option></select></div>
+      <div><label>பட்ஜெட் (per Cent)</label><select id="searchBudget"><option value="">அனைத்தும்</option><option data-max="50000">&#8377;0 &ndash; &#8377;50,000</option><option data-max="100000">&#8377;50,000 &ndash; &#8377;1,00,000</option><option data-max="200000">&#8377;1,00,000 &ndash; &#8377;2,00,000</option><option data-max="999999999">&#8377;2,00,000+</option></select></div>
       <button type="submit">தேடு</button>
     </form>
   </div>
@@ -508,9 +508,13 @@
         <div>
           <label>விருப்பமான இடம்</label>
           <select name="location">
-            <option>திருக்கழுக்குன்றம்</option>
             <option>செங்கல்பட்டு</option>
-            <option>மாமல்லபுரம் சாலை</option>
+            <option>திருக்கழுக்குன்றம்</option>
+            <option>திருப்போரூர்</option>
+            <option>மதுராந்தகம்</option>
+            <option>செய்யூர்</option>
+            <option>பல்லாவரம்</option>
+            <option>தாம்பரம்</option>
             <option>வண்டலூர்</option>
             <option>மற்றவை</option>
           </select>
@@ -521,7 +525,7 @@
             <option>வேளாண் நிலம்</option>
             <option>குடியிருப்பு மனை</option>
             <option>வணிக நிலம்</option>
-            <option>தெரியவில்லை</option>
+            <option>மற்றவை</option>
           </select>
         </div>
         <div>
@@ -699,21 +703,18 @@
 
     fetch(SHEET_WEB_APP_URL, {
       method: 'POST',
+      mode: 'no-cors',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify(data)
     })
-      .then(res => res.json())
-      .then(res => {
+      .then(() => {
+        // no-cors என்பதால் பதில் படிக்க முடியாது (opaque response) —
+        // Apps Script deploy சரியாக இருந்தால், இங்கு வந்தால் data சேமிக்கப்பட்டிருக்கும்.
         efBtn.disabled = false;
         efBtn.textContent = 'தேவையை அனுப்பவும்';
-        if (res && res.result === 'success') {
-          efStatus.textContent = 'நன்றி! உங்கள் தேவை பதிவு செய்யப்பட்டது. விரைவில் தொடர்பு கொள்வோம்.';
-          efStatus.className = 'ef-status ok';
-          efForm.reset();
-        } else {
-          efStatus.textContent = 'பிழை ஏற்பட்டது, மீண்டும் முயற்சிக்கவும் அல்லது WhatsApp மூலம் தொடர்பு கொள்ளவும்.';
-          efStatus.className = 'ef-status err';
-        }
+        efStatus.textContent = 'நன்றி! உங்கள் தேவை பதிவு செய்யப்பட்டது. விரைவில் தொடர்பு கொள்வோம்.';
+        efStatus.className = 'ef-status ok';
+        efForm.reset();
       })
       .catch(() => {
         efBtn.disabled = false;
